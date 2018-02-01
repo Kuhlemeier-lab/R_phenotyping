@@ -33,6 +33,7 @@ Now you can measure with 2 different tools:
  - [j] measures just like [m], and asks you for a label for each measurements.
 
 gettable(getcolumn="Length", scale = 2, columns )
+	
 	It will allow you to have raw Fiji data (open RawFijiTemplate.csv) turned into
 	clean tables (open ProcessedPhenoData.csv).
 	The conditions for this script to work properly are:
