@@ -1,28 +1,29 @@
 # R_for_phenotyping-
-All the R codes that help phenotyping welcome
+You will find here all the R codes (and why not all the codes at all?) that could help in the phenotyping process. For each new file, please add a description in this readme. Use the name of your file to put it in the alphabetical order.
 
-A good description coming description soon ^^
+AmazingFijiFunctions.R
+	This script contains functions (only one for now) that help processing data taken directly from the software Fiji,
+	taken together with a modified version of the "Measure and Label" macro.
 
-Install FIJI (ImageJ 2)
+	Install FIJI (ImageJ 2)
+	Open FIJI
+	Open any picture and make a measurement using [m]
+	The Results table opens. In it, go to Results > Options...
+	In File extension for tables (.csv, .tsv, .txt), write ".csv"
+	Click OK
+	Close the Results table
+	Go to Plugins > Macros > StartUp Macros...
+	A console opens, paste the following code at the very end of it paste the following code:
 
-Open FIJI
-Open any picture and make a measurement using [m]
-The Results table opens. In it, go to Results > Options...
-In File extension for tables (.csv, .tsv, .txt), write ".csv"
-Click OK
-Close the Results table
-Go to Plugins > Macros > StartUp Macros...
-A console opens, paste the following code at the very end of it paste the following code:
+	macro "Measure And Label [j]" {
+		fontSize = 12;
+		label = getString("Label:", "A");
+		run("Measure");
+		setResult("Label", nResults-1, label)
+		updateResults();
+	}
 
-macro "Measure And Label [j]" {
-       fontSize = 12;
-       label = getString("Label:", "A");
-       run("Measure");
-       setResult("Label", nResults-1, label)
-       updateResults();
-  }
-
-Restart FIJI
-Now you can measure with 2 different tools:
- - [m] let you measure the data as defined in Analyse > Set Measurements...
- - [j] measures just like [m], and asks you for a label for each measurements.
+	Restart FIJI
+	Now you can measure with 2 different tools:
+	 - [m] let you measure the data as defined in Analyse > Set Measurements...
+	 - [j] measures just like [m], and asks you for a label for each measurements.
