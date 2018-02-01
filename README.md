@@ -3,7 +3,15 @@ You will find here all the R codes (and why not all the codes at all?) that coul
 
 AmazingFijiFunctions.R
 	This script contains functions (only one for now) that help processing data taken directly from the software Fiji,
-	taken together with a modified version of the "Measure and Label" macro.
+	taken together with a modified version of the "Measure and Label" macro. With this script, R will use the "Label" column
+	in the Fiji results table to know how to process the data.
+	It will allow you to have raw fiji data (open RawFijiTemplate.csv) turned into clean tables (open ProcessedPhenoData.csv).
+	
+	The conditions for this script to work properly are:
+		- You always have the same amount of measurements (same amount of columns)
+		- You only have raw .csv Fiji files in the folder in which you'll run the script
+	
+	In order to can use it, please set Fiji the following way:
 
 	Install FIJI (ImageJ 2)
 	Open FIJI
