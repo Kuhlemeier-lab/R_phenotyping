@@ -2,6 +2,7 @@
 You will find here all the R codes (and why not all the codes at all?) that could help in the phenotyping process. For each new file, please add a description in this readme. Use the name of your file to put it in the alphabetical order.
 
 AmazingFijiFunctions.R
+	
 	This script contains functions (only one for now) that help processing data taken directly from the software Fiji,
 	taken together with a modified version of the "Measure and Label" macro. With this script, R will use the "Label" column
 	in the Fiji results table to know how to process the data.
