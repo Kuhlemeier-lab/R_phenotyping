@@ -19,7 +19,7 @@ In order to can use it, please set Fiji the following way:
 - Close the Results table
 - Go to Plugins > Macros > StartUp Macros...
 - A console opens, paste the following code at the very end of it:
-
+```
 	macro "Measure And Label [j]" {
 		fontSize = 12;
 		label = getString("Label:", "A");
@@ -27,7 +27,7 @@ In order to can use it, please set Fiji the following way:
 		setResult("Label", nResults-1, label)
 		updateResults();
 	}
-
+```
 - Restart FIJI
 
 **Now you can measure with 2 different tools:**
