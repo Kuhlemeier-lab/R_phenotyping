@@ -53,9 +53,8 @@ checkdata<-function(columns, scale = TRUE) {
     line2<-c(line2,length(mtx[,2])+1)
     for (j in 1:(length(line1)-1)){
       if ((line1[j+1]-line1[j]-sum(line2>line1[j+1]&line2<line1[j]))+1!=columns){
-        stop("Data not fitted for gettable() function : ",setoffiles[i]," has more values than ", columns, " values between rows ", line1[j], " and ",line1[j+1])
+        stop("Data not fitted for gettable() function : ",setoffiles[i]," has more than ", columns, " values between rows ", line1[j], " and ",line1[j+1],".")
       }
     }
   }
   print("All good, buddy !")
-}
