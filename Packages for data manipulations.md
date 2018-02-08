@@ -1,55 +1,55 @@
 This document presents some tools in the packages dplyr, tidyr and readr that help to clean and manipulate data in R.
 It is based on the lesson "Getting and Cleaning data" from the swirl package.
 
-#Package dplyr
+# Package dplyr
 
 Base function to make a special table, whose print is more informative than a simple data frame print.
 tbl_df(object)
 
-##5 principle verbs functions:
-###select(mydf, colname1, colname2, colname3)
+## 5 principle verbs functions:
+### select(mydf, colname1, colname2, colname3)
 -> can subset only columns
 -> prints 3 columns from the mydf data frame. The columns are shown in the order specified.
 -> Possible to use the ":" to print a serie of columns just like making a serie of numbers.
 -> can use the "-" to remove one column
 -> can combinethe 2 last points to remove a serie of columns : -(column2:column5)
 
-###filter(mydf, colname=="value")
+### filter(mydf, colname=="value")
 -> can subset rows
 -> can specify as many conditions as I want, separated by commas.
 -> can use any logical or boolean operators that I want
 -> | is the operator OR, & is AND
 -> can use is.na() type functions as well as !is.na()
 
-###arrange(mydf,colname)
+### arrange(mydf,colname)
 -> sort in function of a variable, ascending value by default.
 -> can replace colname with desc(colname) if you want to arrange by descending value
 -> can use several colnames separated by a coma, it will sort prioritising the first one, then the second, etc.
 
-###mutate(mydf, newcol1=colname*12, newcol2=newcol1+42)
+### mutate(mydf, newcol1=colname*12, newcol2=newcol1+42)
 -> create a new column in the data frame named newcol, based on another column.
 -> can create several new columns in only one line of code.
 
-###summarize(mydf,mean(colname))
+### summarize(mydf,mean(colname))
 summarize(mydf,newobject=mean(colname))
 -> applies the function to the column that you want.
 -> can create a new object with the  second line writing.
 -> can put several arguments that will be returned one after the other.
 -> interesting only if used together with group_by function.
 
-##More functions:
+## More functions:
 
-###group_by(mydf, colname)
+### group_by(mydf, colname)
 -> doesn't change the data, but inserts in it a "by group" dynamic when using another function.
 	-> i.e. summarize(mydf,mean(colname)) will return a data frame containing the mean of each group in colname
 
-###%>%
+### %>%
 -> opérateur dlyr. Tout ce qui est à gauche devient le premier argument des functions à droite. Facilite l'écriture.
 
 
-#Package tidyr
+# Package tidyr
 
-###gather(data,...)
+### gather(data,...)
 Allows to gather columns in a data that's not clean.
 Example:
 
@@ -134,7 +134,7 @@ Example:
 In this example, we didn't call a separator. In this case, the function is programmed to know that we mostly separate with non-alphanumeric characters.
 
 
-###spread(data, key, value,...)
+### spread(data, key, value,...)
 
 spread one column into several, filling it with the values of another.
 data= data frame
@@ -142,27 +142,29 @@ key= name of the column to spread
 value= values filling the new columns
 
 >students3
-    name    test  class grade
-1  Sally midterm class1     A
-2  Sally   final class1     C
-9  Brian midterm class1     B
-10 Brian   final class1     B
-13  Jeff midterm class2     D
-14  Jeff   final class2     E
-15 Roger midterm class2     C
-16 Roger   final class2     A
-21 Sally midterm class3     B
-22 Sally   final class3     C
-27 Karen midterm class3     C
-28 Karen   final class3     C
-33  Jeff midterm class4     A
-34  Jeff   final class4     C
-37 Karen midterm class4     A
-38 Karen   final class4     A
-45 Roger midterm class5     B
-46 Roger   final class5     A
-49 Brian midterm class5     A
-50 Brian   final class5     C
+
+|   | name |   test | class |grade|
+|---|---|:---:|---|---| 
+|1|  Sally| midterm |class1  |   A|
+|2|  Sally|   final |class1  |   C|
+|9|  Brian| midterm |class1  |   B|
+|10| Brian|   final |class1  |   B|
+|13|  Jeff| midterm |class2  |   D|
+|14|  Jeff|   final |class2  |   E|
+|15| Roger| midterm |class2  |   C|
+|16| Roger|   final |class2  |   A|
+|21| Sally| midterm |class3  |   B|
+|22| Sally|   final |class3  |   C|
+|27| Karen| midterm |class3  |   C|
+|28| Karen|   final |class3  |   C|
+|33|  Jeff| midterm |class4  |   A|
+|34|  Jeff|   final |class4  |   C|
+|37| Karen| midterm |class4  |   A|
+|38| Karen|   final |class4  |   A|
+|45| Roger| midterm |class5  |   B|
+|46| Roger|   final |class5  |   A|
+|49| Brian| midterm |class5  |   A|
+|50| Brian|   final |class5  |   C|
 
 >spread(students3, test, grade)
     name  class final midterm
@@ -178,9 +180,9 @@ value= values filling the new columns
 10 Sally class3     C       B
 
 
-#Package readr
+# Package readr
 
-###parse_number(...)
+### parse_number(...)
 Takes only the number from the argument.
 Also exist as parse_character(), and others.
 
