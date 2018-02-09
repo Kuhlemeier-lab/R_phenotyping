@@ -52,9 +52,9 @@ summarize(mydf,newobject=mean(colname))
 ### gather(data,...)
 Allows to gather columns in a data that's not clean.
 Example:
-
-\>students
-
+```
+>students
+```
 |  |grade |male |female
   |---|---|---|---
 1     |A    |1      |5
@@ -64,9 +64,9 @@ Example:
 5     |E    |7      |4
 
 This table contains in fact 3 variables : grade, sex and count. We then have 2 columns that are not variables.
-
-\>gather(students, sex, count, -grade)
-
+```
+>gather(students, sex, count, -grade)
+```
 |   |grade    |sex |count
 |---|---|---|---
 1      |A   |male     |1
@@ -87,9 +87,9 @@ Which is clean, with one variable per column.
 
 Splits a column into more columns based on the separator.
 Example:
-
-\> res
-
+```
+> res
+```
 |   |grade |sex_class |count
 |---|---|---|---
 1      |A    |male_1     |3
@@ -112,9 +112,9 @@ Example:
 18     |C  |female_2     |8
 19     |D  |female_2     |1
 20     |E  |female_2     |7
-
-\> separate(res,sex_class,c("sex","class"))
-
+```
+> separate(res,sex_class,c("sex","class"))
+```
 |   |grade    |sex |class |count
 |---|---|---|---|---
 1      |A   |male     |1     |3
@@ -147,9 +147,9 @@ spread one column into several, filling it with the values of another.
 data= data frame
 key= name of the column to spread
 value= values filling the new columns
-
-\>students3
-
+```
+>students3
+```
 |   | name |   test | class |grade|
 |---|---|:---:|---|---| 
 |1|  Sally| midterm |class1  |   A|
@@ -172,9 +172,9 @@ value= values filling the new columns
 |46| Roger|   final |class5  |   A|
 |49| Brian| midterm |class5  |   A|
 |50| Brian|   final |class5  |   C|
-
-\>spread(students3, test, grade)
-
+```
+>spread(students3, test, grade)
+```
 |    |name  |class |final |midterm
 |---|---|---|---|---
 1  |Brian |class1     |B       |B
