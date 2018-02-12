@@ -1,4 +1,4 @@
-gettable<-function(getcolumn="Length", scale = 2, columns ) {
+gettable<-function(getcolumn="Length", scale , columns ) {
   setoffiles<-list.files()
   nbfiles<-length(setoffiles)
   bigtable<-NULL
@@ -11,10 +11,12 @@ gettable<-function(getcolumn="Length", scale = 2, columns ) {
     mtx<-matrix(data=c(refcol,scalecol),nrow = workrow)
     line1<-c(which(mtx[,1]),length(mtx[,1])+1)
     line2<-which(mtx[,2])
-    if(scale==FALSE&sum(mtx[,2],na.rm = TRUE)>0){
+    if (scale==TRUE){
+      stop("Wrong argument, scale cannot be TRUE.")
+    } else if(scale==FALSE&sum(mtx[,2],na.rm = TRUE)>0){
       scalemtx<-matrix(c(line2,rep(" ",times=length(line2))),ncol = length(line2),byrow = TRUE)
       stop("Data has one or several scale rows in file : ",setoffiles[i],", rows number: ",scalemtx)
-    }
+      }
     line2<-c(line2,length(mtx[,2])+1)
     for (j in 1:(length(line1)-1)){
       line1<<-line1
@@ -54,3 +56,4 @@ gettable<-function(getcolumn="Length", scale = 2, columns ) {
   bigtable[,1]<-as.character(bigtable[,1])
   bigtable
 }
+
