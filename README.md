@@ -33,6 +33,42 @@ macro "Measure And Label [j]" {
 **Now you can measure with 2 different tools:**
  - [m] let you measure the data as defined in Analyse > Set Measurements...
  - [j] measures just like [m], and asks you for a label for each measurements.
+ 
+ ### How to take measurements with AmazingFijiFunctions.R ?
+ 
+ Before taking the measurements, think about the scale: Is it the same for all your pictures ? Is it different
+ for each picture ? Are there series of pictures with different scales ?
+ 
+ When you will be done with managing the scale, you'll can start collecting the data.
+ 
+ #### Same scale for all my pictures
+ Put all your pictures in a folder and start with making the scale. To do so, measure the length that you want using
+ the *Straight* tool and press [j] to use the "Measure And Label" macro. Call this measurement **scale**. You can then
+ make the measurements you want on the following pictures without worrying about the scale: the ```gettable()``` function
+ will do it for you.
+ 
+ #### Series of different scales
+ I recommand you to put the different series in different files, that way you won't need to redo the scale every few images.
+ Then proceed in each folder like said just above.
+ 
+ #### Different scale for each picture
+ Poor you, it'll take you significantly longer! But don't worry, Vivi daddy can help you:
+ 
+ The best solution is to use the *Set Scale...* tool that you can find in *Analyze > Set Scale...*. But it'll get annoying if
+ you have to reach it every time. To go faster, create a keyboard shortcut! Go to *Plugin > Shortcuts > Add Shortcut...*
+ In **Command**, select **Set Scale...**, in **Shortcut**, I recommand you to put **q**. This short hint will allow you to make the scale
+ very efficiently as for each picture you'll only need to measure your scale, press **q**, press **Tab**, indicate the scale,
+ and press **Enter** to confirm. Three annoying clicks saved for each pictures! After making the scale, you can proceed and 
+ take your measurements as described below. When you'll ask ```gettable()``` to process your data, remember to set
+ ```scale==FALSE```in the arguments.
+ 
+ #### Collecting data
+ At last you can do it! For each of your picture, first take the first measurement of the serie and press [j]. Enter the name of
+ the individual you are measuring and take the rest of the measurements with [m]. Remember to name each individual, **even if
+ several of them has the same name**. It is extremely important as ```gettable()```will use the names to process
+ the data. You can decide at any time to redo the scale. If you have some data missing, take a random measurement with [j]
+ and call it **ND**. When it will process your data, ```gettable()``` will replace it with a NA.
+ 
 
 ### gettable(getcolumn="Length", scale = 2, columns )
 	
