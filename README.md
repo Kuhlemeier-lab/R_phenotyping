@@ -72,8 +72,7 @@ macro "Measure And Label [j]" {
 
 ### gettable(getcolumn="Length", scale = 2, columns )
 	
-It will allow you to have raw [Fiji data](Data Stock/RawFijiTemplate.csv) turned into
-[clean tables](Data Stock/ProcessedPhenoData.csv).
+It will allow you to have raw [Fiji data](DataStock/RawFijiTemplate.csv) turned into [clean tables](DataStock/ProcessedPhenoData.csv).
 The conditions for this script to work properly are:
 - You always have the same amount of measurements (same amount of columns)
 - You are interested in the values of only one column of the Fiji results 
