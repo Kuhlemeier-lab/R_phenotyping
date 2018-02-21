@@ -18,21 +18,12 @@ In order to can use it, please set Fiji the following way:
 - Click OK
 - Close the Results table
 - Go to Plugins > Macros > StartUp Macros...
-- A console opens, paste the following code at the very end of it:
-```
-macro "Measure And Label [j]" {
-	fontSize = 12;
-	label = getString("Label:", "A");
-	run("Measure");
-	setResult("Label", nResults-1, label)
-	updateResults();
-}
-```
-- Restart FIJI
+- A console opens, paste [this macro](Label_Fiji_Macro.txt) at the very end of it.
+- Don't forget to save your changes and restart FIJI
 
 **Now you can measure with 2 different tools:**
  - [m] let you measure the data as defined in Analyse > Set Measurements...
- - [j] measures just like [m], and asks you for a label for each measurements.
+ - [j] measures just like [m], store your picture name, and asks you for a label for each measurement.
  
  ### How to take measurements with AmazingFijiFunctions.R ?
  
@@ -54,8 +45,8 @@ macro "Measure And Label [j]" {
  #### Different scale for each picture
  Poor you, it'll take you significantly longer! But don't worry, Vivi daddy can help you:
  
- The best solution is to use the *Set Scale...* tool that you can find in *Analyze > Set Scale...*. But it'll get annoying if
- you have to reach it every time. To go faster, create a keyboard shortcut! Go to *Plugin > Shortcuts > Add Shortcut...*
+ The best solution is to use the *Analyze > Set Scale...* tool. But it'll get annoying if you have to reach it every time.
+ To go faster, create a keyboard shortcut! Go to *Plugin > Shortcuts > Add Shortcut...*
  In **Command**, select **Set Scale...**, in **Shortcut**, I recommand you to put **q**. This short hint will allow you to make the scale
  very efficiently as for each picture you'll only need to measure your scale, press **q**, press **Tab**, indicate the scale,
  and press **Enter** to confirm. Three annoying clicks saved for each pictures! After making the scale, you can proceed and 

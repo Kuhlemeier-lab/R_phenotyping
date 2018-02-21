@@ -1,0 +1,9 @@
+  macro "Measure And Label [j]" {
+       fontSize = 12;
+       file = getInfo("image.filename")
+       label = getString("Label:", "A");
+       run("Measure");
+       setResult("Label", nResults-1, label)
+       setResult("File", nResults-1, getInfo("image.filename"))
+       updateResults();
+  }

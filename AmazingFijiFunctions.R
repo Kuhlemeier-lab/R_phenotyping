@@ -19,8 +19,6 @@ gettable<-function(getcolumn="Length", scale , columns ) {
       }
     line2<-c(line2,length(mtx[,2])+1)
     for (j in 1:(length(line1)-1)){
-      line1<<-line1
-      line2<<-line2
       if ((line1[j+1]-line1[j]-sum(line2<line1[j+1]&line2>line1[j]))!=length(columns)-1){
         stop("Data not fitted for gettable() function : ",setoffiles[i]," doesn't have ", length(columns)-1, " values between rows ", line1[j], " and ",line1[j+1],".")
       }
