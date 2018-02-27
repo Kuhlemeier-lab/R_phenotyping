@@ -1,21 +1,21 @@
 gettable<-function(getcolumn="Length", scale , columns ) {
   setoffiles<-list.files()
-  nbfiles<-length(setoffiles)
-  bigtable<-NULL
-  longlines<-NULL
-  for (i in 1:nbfiles){
+  nbfiles<-length(setoffiles)   ## will be used to open all files one after the other
+  bigtable<-NULL                ## used at the end to build the table
+  longlines<-NULL               ## will disappear
+  for (i in 1:nbfiles){         ## Check the data, code for removing the annoying rows and warn
     workfile<-read.csv(setoffiles[i],header=TRUE,na.strings = "")
     workrow<-nrow(workfile)
-    refcol<-is.na(workfile$Label)==FALSE&workfile$Label!="scale"&workfile$Label!="ND"
-    scalecol<-workfile$Label=="scale"
-    mtx<-matrix(data=c(refcol,scalecol),nrow = workrow)
-    line1<-c(which(mtx[,1]),length(mtx[,1])+1)
-    line2<-which(mtx[,2])
+    refcol<-is.na(workfile$Label)==FALSE&workfile$Label!="scale"&workfile$Label!="ND"  ## logical vector saying if each row of the "Label" column is something else than a blank, ND or the scale
+    scalecol<-workfile$Label=="scale"    ## logical saying which positions of the "Label" column is the scale
+    mtx<-matrix(data=c(refcol,scalecol),nrow = workrow) ##matrix of two columns that aligns refcol and scalecol
+    line1<-c(which(mtx[,1]),length(mtx[,1])+1)  ## position of TRUE in refcol
+    line2<-which(mtx[,2])     ###position of TRUE in scalecol
     if (scale==TRUE){
       stop("Wrong argument, scale cannot be TRUE.")
     } else if(scale==FALSE&sum(mtx[,2],na.rm = TRUE)>0){
-      scalemtx<-matrix(c(line2,rep(" ",times=length(line2))),ncol = length(line2),byrow = TRUE)
-      stop("Data has one or several scale rows in file : ",setoffiles[i],", rows number: ",scalemtx)
+      line2string<-toString(line2)
+      stop("Data has one or several scale rows in file : ",setoffiles[i],", rows number: ",line2string)
       }
     line2<-c(line2,length(mtx[,2])+1)
     for (j in 1:(length(line1)-1)){
@@ -24,19 +24,19 @@ gettable<-function(getcolumn="Length", scale , columns ) {
       }
     }
   }
-  if (scale==FALSE){
     truescale<-1
-  }
   for (i in 1:nbfiles){
     workfile<-read.csv(setoffiles[i],header=TRUE,na.strings = "")
     workrow<-nrow(workfile)
     refrow<-as.character(workfile$Label)
+    filerow<-as.character(workfile$File)
     processrow<-workfile[getcolumn]
-    tablebase<-as.character(NULL)
+    tablebase<-NULL
     for (j in 1:workrow){
       if (is.na(refrow[j])){
         tablebase<-c(tablebase,format(processrow[j,1]*truescale,digits=2,nsmall=2))
       } else if (is.na(refrow[j])==FALSE&refrow[j]!="scale"&refrow[j]!="ND"){
+        tablebase<-c(tablebase,filerow[j])
         tablebase<-c(tablebase,refrow[j])
         tablebase<-c(tablebase,format(processrow[j,1]*truescale,digits=2,nsmall=2))
       } else if (refrow[j]=="ND"){
@@ -46,12 +46,17 @@ gettable<-function(getcolumn="Length", scale , columns ) {
         truescale<-scale/pixelscale
       }
     }
-    longlines<-c(longlines,tablebase)
+    lastcol<-length(columns)+1
+    allcolumns<-c("file",columns)
+    allcolumns<-factor(allcolumns,levels = unique (allcolumns)) ## turns characters into levelled factors to keep them in the right order when using split()
+    pre_df<-split(tablebase,allcolumns)##splits the data into different columns
+    for (k in 3:lastcol){
+      pre_df[[k]]<-as.numeric(pre_df[[k]])
+      }
   }
-  bigtable<-matrix(data=longlines,byrow = TRUE, ncol = length(columns))
-  colnames(bigtable)<-columns
-  bigtable<-as.data.frame(bigtable)
-  bigtable[,1]<-as.character(bigtable[,1])
+  bigtable<-data.frame(pre_df)
+  bigtable$file<-as.character(bigtable$file)
+  bigtable$name<-as.character(bigtable$name)
   bigtable
 }
 
