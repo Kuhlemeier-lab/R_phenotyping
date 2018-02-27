@@ -22,7 +22,7 @@ In order to can use it, please set Fiji the following way:
 - Don't forget to save your changes and restart FIJI
 
 **Now you can measure with 2 different tools:**
- - [m] let you measure the data as defined in Analyse > Set Measurements...
+ - [m] measures the data as defined in Analyse > Set Measurements...
  - [j] measures just like [m], store your picture name, and asks you for a label for each measurement.
  
  ### How to take measurements with AmazingFijiFunctions.R ?
@@ -71,5 +71,5 @@ The conditions for this script to work properly are:
 	
 Arguments :
 - getcolumn = name of the column that has the measurements you want to extract.
-- scale = unit of the scale you measured. By default 2 cm if you extract the "Length" column, but would be 2 square cm if it was the "Area" column choosed. If FALSE, it won't make a scale and keep your raw measurements.
+- scale = unit of the scale you measured. There is no default value so you must specify it every time you run the function. If FALSE, it won't make a scale and keep your raw measurements.
 - columns = an object containing the name of each of your column. 
