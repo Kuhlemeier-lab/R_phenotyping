@@ -2,7 +2,8 @@ gettable<-function(getcolumn="Length", scale , columns ) {
   setoffiles<-list.files()
   nbfiles<-length(setoffiles)   ## will be used to open all files one after the other
   bigtable<-NULL                ## used at the end to build the table
-  longlines<-NULL               ## will disappear
+  longlines<-0    ## used to stop the script after the checking phase
+  willstop<-0
   for (i in 1:nbfiles){         ## Check the data, code for removing the annoying rows and warn
     workfile<-read.csv(setoffiles[i],header=TRUE,na.strings = "")
     workrow<-nrow(workfile)
@@ -16,22 +17,26 @@ gettable<-function(getcolumn="Length", scale , columns ) {
     } else if(scale==FALSE&sum(mtx[,2],na.rm = TRUE)>0){
       line2string<-toString(line2)
       stop("Data has one or several scale rows in file : ",setoffiles[i],", rows number: ",line2string)
-      }
+    }
     line2<-c(line2,length(mtx[,2])+1)
     for (j in 1:(length(line1)-1)){
       if ((line1[j+1]-line1[j]-sum(line2<line1[j+1]&line2>line1[j]))!=length(columns)-1){
-        stop("Data not fitted for gettable() function : ",setoffiles[i]," doesn't have ", length(columns)-1, " values between rows ", line1[j], " and ",line1[j+1],".")
+        warning("Unfitted data for gettable() function : ",setoffiles[i]," doesn't have ", length(columns)-1, " values between rows ", line1[j], " and ",line1[j+1],".")
+        willstop<-1
       }
     }
   }
-    truescale<-1
+  if (willstop==1){
+    stop("Correct the data to fit the function.")
+  }
+  truescale<-1
+  tablebase<-NULL
   for (i in 1:nbfiles){
     workfile<-read.csv(setoffiles[i],header=TRUE,na.strings = "")
     workrow<-nrow(workfile)
     refrow<-as.character(workfile$Label)
     filerow<-as.character(workfile$File)
     processrow<-workfile[getcolumn]
-    tablebase<-NULL
     for (j in 1:workrow){
       if (is.na(refrow[j])){
         tablebase<-c(tablebase,format(processrow[j,1]*truescale,digits=2,nsmall=2))
@@ -46,17 +51,16 @@ gettable<-function(getcolumn="Length", scale , columns ) {
         truescale<-scale/pixelscale
       }
     }
-    lastcol<-length(columns)+1
-    allcolumns<-c("file",columns)
-    allcolumns<-factor(allcolumns,levels = unique (allcolumns)) ## turns characters into levelled factors to keep them in the right order when using split()
-    pre_df<-split(tablebase,allcolumns)##splits the data into different columns
-    for (k in 3:lastcol){
-      pre_df[[k]]<-as.numeric(pre_df[[k]])
-      }
+  }
+  lastcol<-length(columns)+1
+  allcolumns<-c("file",columns)
+  allcolumns<-factor(allcolumns,levels = unique (allcolumns)) ## turns characters into levelled factors to keep them in the right order when using split()
+  pre_df<-split(tablebase,allcolumns)##splits the data into different columns
+  for (k in 3:lastcol){
+    pre_df[[k]]<-as.numeric(pre_df[[k]])
   }
   bigtable<-data.frame(pre_df)
   bigtable$file<-as.character(bigtable$file)
   bigtable$name<-as.character(bigtable$name)
   bigtable
 }
-
