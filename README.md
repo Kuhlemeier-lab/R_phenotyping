@@ -85,3 +85,10 @@ in a new folder.It's ment to save some time by avoiding to type or correct every
 - x: An integer giving the number of the columns (up to 2) that will be used on the x axis.
 - y: An integer giving the number of the columns that will be used on the y axis. There will be one graph per column.
 jitter: either TRUE or FALSE, shows each data point on the boxplots.
+
+#### Examples
+In R, with the working directory set in [DataStock](DataStock). allgraph will be run on [this data]( DataStock/allgraph_data_example.csv ).
+```
+> allgraphs(allgraph_data_example, foldername = "allgraph_output",x=c(1,2),y=c(3,9:15),jitter=TRUE)
+```
+[This directory](DataStock/allgraph_output) has been created and the graphs have been saved.
