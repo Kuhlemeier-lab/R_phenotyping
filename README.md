@@ -73,3 +73,15 @@ Arguments :
 - getcolumn = name of the column that has the measurements you want to extract.
 - scale = unit of the scale you measured. There is no default value so you must specify it every time you run the function. If FALSE, it won't make a scale and keep your raw measurements.
 - columns = an object containing the name of each of your column. 
+
+## Allgraphs.R
+
+This script contains a function (based on ggplot2) to allow you to make series of boxplots saved in .png 
+in a new folder.It's ment to save some time by avoiding to type or correct every new plot code lines.
+
+### allgraphs(dataframe, foldername="AllGraphs", x, y, jitter=TRUE)
+- dataframe: name of the dataframe to make plots with.
+- foldername: name of the new directory that will be created to store pictures. The directory will be created in your working directory.
+- x: An integer giving the number of the columns (up to 2) that will be used on the x axis.
+- y: An integer giving the number of the columns that will be used on the y axis. There will be one graph per column.
+jitter: either TRUE or FALSE, shows each data point on the boxplots.
