@@ -1,3 +1,8 @@
+pack<-installed.packages()
+if(any(pack[,1]=="ggplot2")==FALSE){
+  install.packages("ggplot2")
+}
+rm(pack)
 library(ggplot2)
 
 allgraphs<-function(dataframe, foldername="AllGraphs", x, y,jitter=TRUE){
