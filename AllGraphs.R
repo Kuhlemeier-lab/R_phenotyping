@@ -18,8 +18,8 @@ allgraphs<-function(dataframe, foldername="AllGraphs", x, y,jitter=TRUE){
   basewd<-getwd()
   dir.create(foldername)
   setwd(foldername)
-  colcol<-colnames(dataframe[,y])
-  abs<-colnames(dataframe[,x])
+  colcol<-colnames(dataframe[,y,drop=FALSE])
+  abs<-colnames(dataframe[,x,drop=FALSE])
   if (length(x)==1){
     for (i in 1:length(colcol)){
       ord<-colcol[i]

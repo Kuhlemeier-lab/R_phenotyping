@@ -1,5 +1,6 @@
 gettable<-function(getcolumn="Length", scale , columns ) {
   setoffiles<-list.files()
+  setoffiles<-setoffiles[grep(".csv",setoffiles)]
   nbfiles<-length(setoffiles)   ## will be used to open all files one after the other
   bigtable<-NULL                ## used at the end to build the table
   longlines<-0    ## used to stop the script after the checking phase
