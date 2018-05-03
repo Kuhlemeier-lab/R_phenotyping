@@ -61,7 +61,7 @@ gettable<-function(getcolumn="Length", scale , columns ) {
     pre_df[[k]]<-as.numeric(pre_df[[k]])
   }
   bigtable<-data.frame(pre_df)
-  bigtable$file<-as.character(bigtable$file)
-  bigtable$name<-as.character(bigtable$name)
+  bigtable[,1]<-as.character(bigtable[,1])
+  bigtable[,2]<-as.character(bigtable[,2])
   bigtable
 }
