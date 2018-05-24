@@ -1,3 +1,8 @@
+####    AllGraphs    ####
+
+## Copyright (C) 2018  Kuhlemeier-Lab
+## License GPL-3 | File LICENSE
+
 pack<-installed.packages()
 if(any(pack[,1]=="ggplot2")==FALSE){
   install.packages("ggplot2")

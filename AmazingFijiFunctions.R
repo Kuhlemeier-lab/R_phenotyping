@@ -1,3 +1,8 @@
+####    AmazingFijiFunctions    ####
+
+## Copyright (C) 2018  Kuhlemeier-Lab
+## License GPL-3 | File LICENSE
+
 gettable<-function(getcolumn="Length", scale , columns ) {
   setoffiles<-list.files()
   setoffiles<-setoffiles[grep(".csv",setoffiles)]
