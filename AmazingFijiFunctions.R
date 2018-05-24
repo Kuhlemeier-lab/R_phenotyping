@@ -3,9 +3,17 @@
 ## Copyright (C) 2018  Kuhlemeier-Lab
 ## License GPL-3 | File LICENSE
 
-gettable<-function(getcolumn="Length", scale , columns ) {
-  setoffiles<-list.files()
-  setoffiles<-setoffiles[grep(".csv",setoffiles)]
+gettable<-function(getcolumn="Length", scale , columns ,
+                   output = "" # if specified, saves the table in "<output>.csv"
+                   ) {
+  setoffiles<-list.files(pattern = "*.csv")
+  # trim accidental spaces from output string
+  output <- trimws(output, which = "both")
+  # if output exists, check no file with same name is in the folder
+  if ((nchar(output) > 0) &
+      (paste0(output, ".csv") %in% setoffiles)) {
+    stop(paste0("'", output, ".csv' file already exists in this folder. Specify a different name for output file"))
+    }
   nbfiles<-length(setoffiles)   ## will be used to open all files one after the other
   bigtable<-NULL                ## used at the end to build the table
   longlines<-0    ## used to stop the script after the checking phase
@@ -68,5 +76,9 @@ gettable<-function(getcolumn="Length", scale , columns ) {
   bigtable<-data.frame(pre_df)
   bigtable[,1]<-as.character(bigtable[,1])
   bigtable[,2]<-as.character(bigtable[,2])
-  bigtable
+  # save to .csv if requested
+  if (nchar(output) > 0) {
+    output <- paste0(output, ".csv")
+    write.csv(bigtable, file = output, row.names = F)
+    } else { bigtable }
 }
