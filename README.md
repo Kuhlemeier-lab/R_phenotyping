@@ -61,8 +61,11 @@ In order to can use it, please set Fiji the following way:
  and call it **ND**. When it will process your data, ```gettable()``` will replace it with a NA.
  
 
-### gettable(getcolumn="Length", scale = 2, columns )
-	
+### gettable function
+```
+gettable(getcolumn="Length", scale = 2, columns )
+```
+
 It will allow you to have raw [Fiji data](DataStock/RawFijiTemplate.csv) turned into [clean tables](DataStock/ProcessedPhenoData.csv).
 The conditions for this script to work properly are:
 - You always have the same amount of measurements (same amount of columns)
@@ -79,7 +82,11 @@ Arguments :
 This script contains a function (based on ggplot2) to allow you to make series of boxplots saved in .png 
 in a new folder.It's ment to save some time by avoiding to type or correct every new plot code lines.
 
-### allgraphs(dataframe, foldername="AllGraphs", x, y, jitter=TRUE)
+### allgraphs function
+```
+allgraphs(dataframe, foldername="AllGraphs", x, y, jitter=TRUE)
+```
+
 - dataframe: name of the dataframe to make plots with.
 - foldername: name of the new directory that will be created to store pictures. The directory will be created in your working directory.
 - x: An integer giving the number of the columns (up to 2) that will be used on the x axis.
