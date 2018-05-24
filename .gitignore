@@ -16,3 +16,6 @@
 *.utf8.md
 *.knit.md
 .Rproj.user
+
+# Test folder
+test/
