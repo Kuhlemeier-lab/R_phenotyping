@@ -63,7 +63,7 @@ In order to can use it, please set Fiji the following way:
 
 ### gettable function
 ```
-gettable(getcolumn="Length", scale = 2, columns )
+gettable(getcolumn="Length", scale = 2, columns, output = "" )
 ```
 
 It will allow you to have raw [Fiji data](DataStock/RawFijiTemplate.csv) turned into [clean tables](DataStock/ProcessedPhenoData.csv).
@@ -76,6 +76,7 @@ Arguments :
 - getcolumn = name of the column that has the measurements you want to extract.
 - scale = unit of the scale you measured. There is no default value so you must specify it every time you run the function. If FALSE, it won't make a scale and keep your raw measurements.
 - columns = an object containing the name of each of your column. 
+- output = default value "" prints the table to STDOUT. If a string is provided, the table is saved in a <string>.csv file in the working directory.
 
 ## Allgraphs.R
 
