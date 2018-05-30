@@ -76,7 +76,7 @@ Arguments :
 - getcolumn = name of the column that has the measurements you want to extract.
 - scale = unit of the scale you measured. There is no default value so you must specify it every time you run the function. If FALSE, it won't make a scale and keep your raw measurements.
 - columns = an object containing the name of each of your column. 
-- output = default value "" prints the table to STDOUT. If a string is provided, the table is saved in a <string>.csv file in the working directory.
+- output = default value "" prints the table to STDOUT. If a string is provided, the table is saved in a `<string`>.csv file in the working directory.
 
 ## Allgraphs.R
 
