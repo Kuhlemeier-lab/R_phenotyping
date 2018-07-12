@@ -93,7 +93,7 @@ allgraphs(dataframe, foldername="AllGraphs", x, y, jitter=TRUE)
 jitter: either TRUE or FALSE, shows each data point on the boxplots.
 
 #### Examples
-In R, with the working directory set in [DataStock](DataStock). allgraph will be run on [this data]( DataStock/allgraph_data_example.csv ).
+In R, with the working directory set in [DataStock](DataStock). ```allgraph()``` will be run on [this data]( DataStock/allgraph_data_example.csv ).
 ```
 > allgraphs(allgraph_data_example, foldername = "allgraph_output",x=c(1,2),y=c(3,9:15),jitter=TRUE)
 ```
