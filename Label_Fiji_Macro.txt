@@ -1,9 +1,13 @@
-  macro "Measure And Label [j]" {
+ macro "Measure And Set Label [j]" {
        fontSize = 12;
-       file = getInfo("image.filename")
+       file = getInfo("image.filename");
        label = getString("Label:", "A");
+       dir = getDirectory("image");
+       name=getTitle;
+       path = dir+name;
        run("Measure");
-       setResult("Label", nResults-1, label)
-       setResult("File", nResults-1, getInfo("image.filename"))
+       setResult("Label", nResults-1, label);
+       setResult("File", nResults-1, getInfo("image.filename"));
+       setResult("Date Modif", nResults-1, File.dateLastModified(path));
        updateResults();
   }
