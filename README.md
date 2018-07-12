@@ -23,14 +23,12 @@ In order to can use it, please set Fiji the following way:
 
 **Now you can measure with 2 different tools:**
  - [m] measures the data as defined in Analyse > Set Measurements...
- - [j] measures just like [m], store your picture name, and asks you for a label for each measurement.
+ - [j] measures just like [m], store your picture name, its date of last modification and asks you for a label for each measurement.
  
  ### How to take measurements with AmazingFijiFunctions.R ?
  
  Before taking the measurements, think about the scale: Is it the same for all your pictures ? Is it different
  for each picture ? Are there series of pictures with different scales ?
- 
- When you will be done with managing the scale, you'll can start collecting the data.
  
  #### Same scale for all my pictures
  Put all your pictures in a folder and start with making the scale. To do so, measure the length that you want using
@@ -55,15 +53,15 @@ In order to can use it, please set Fiji the following way:
  
  #### Collecting data
  At last you can do it! For each of your picture, first take the first measurement of the serie and press [j]. Enter the name of
- the individual you are measuring and take the rest of the measurements with [m]. Remember to name each individual, **even if
- several of them has the same name**. It is extremely important as ```gettable()```will use the names to process
+ the individual you are measuring and take the rest of its measurements with [m]. Remember to name each individual, **even if
+ several of them have the same name**. It is extremely important as ```gettable()```will use the names to process
  the data. You can decide at any time to redo the scale. If you have some data missing, take a random measurement with [j]
  and call it **ND**. When it will process your data, ```gettable()``` will replace it with a NA.
  
 
 ### gettable function
 ```
-gettable(getcolumn="Length", scale = 2, columns, output = "" )
+gettable(getcolumn="Length", scale, columns, output = "" )
 ```
 
 It will allow you to have raw [Fiji data](DataStock/RawFijiTemplate.csv) turned into [clean tables](DataStock/ProcessedPhenoData.csv).
