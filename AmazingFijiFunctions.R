@@ -6,6 +6,7 @@
 pack<-installed.packages()
 if(any(pack[,1]=="tidyr")==FALSE){
   install.packages("tidyr")
+  library(tidyr)
 }
 
 gettable<-function(getcolumn="Length", scale , columns ,
