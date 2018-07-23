@@ -21,10 +21,10 @@ allgraphs<-function(dataframe, foldername="AllGraphs", x, y,jitter=TRUE){
     stop("argument jitter must be TRUE or FALSE")
     }
   basewd<-getwd()
-  dir.create(foldername)
-  setwd(foldername)
+  savepath<-paste(basewd, "/", foldername, sep = "")
   colcol<-colnames(dataframe[,y,drop=FALSE])
   abs<-colnames(dataframe[,x,drop=FALSE])
+  dir.create(foldername)
   if (length(x)==1){
     for (i in 1:length(colcol)){
       ord<-colcol[i]
@@ -45,7 +45,7 @@ allgraphs<-function(dataframe, foldername="AllGraphs", x, y,jitter=TRUE){
           ggtitle(ord,
                   subtitle= Sys.Date())
       }
-      ggsave(paste(ord,".png",sep = ""))
+      ggsave(paste(ord,".png",sep = ""),path = savepath)
     }
   }
   else if (length(x)==2){
@@ -67,8 +67,7 @@ allgraphs<-function(dataframe, foldername="AllGraphs", x, y,jitter=TRUE){
           ggtitle(ord,
                   subtitle= Sys.Date())
       }
-      ggsave(paste(ord,".png",sep = ""))
+      ggsave(paste(ord,".png",sep = ""),path = savepath)
     }
   }
-  setwd(basewd)
 }
