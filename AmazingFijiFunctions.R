@@ -57,13 +57,12 @@ gettable<-function(getcolumn="Length", scale , columns ,
     refrow<-as.character(workfile$Label)
     filerow<-as.character(workfile$File)
     ## Manages the date format to make it understandable to R
-    dateformat<-workfile[which(colnames(workfile)=="Date.Modif")]
-    daterow<-as.character(dateformat[,1])
+    dateformat<-data.frame(rawdate=workfile$Date.Modif)
+    daterow<-as.character(dateformat$rawdate)
     concat<-subset(dateformat,dateformat[,1]!=0)
-    concat<-separate(concat, Date.Modif, c("week","b","d","time","CEST","Y"),sep=" " )
+    concat<-separate(concat, rawdate, c("week","b","d","time","CEST","Y"),sep=" " )
     concat<-data.frame(paste(concat$b,concat$d,concat$Y))
-    daterow[daterow!=0]<-as.character(as.Date(concat[,1],"%b %d %Y"))
-    daterow<<-daterow
+    daterow[daterow[]!=0]<-as.character(as.Date(concat[,1],"%b %d %Y"))
     processrow<-workfile[getcolumn]
     for (j in 1:workrow){
       if (is.na(refrow[j])){
@@ -81,7 +80,6 @@ gettable<-function(getcolumn="Length", scale , columns ,
       }
     }
   }
-  tablebase<<-tablebase
   lastcol<-length(columns)+2
   allcolumns<-c("file","date",columns)
   allcolumns<-factor(allcolumns,levels = unique (allcolumns)) ## turns characters into levelled factors to keep them in the right order when using split()
