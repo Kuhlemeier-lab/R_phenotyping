@@ -6,12 +6,13 @@
 pack<-installed.packages()
 if(any(pack[,1]=="tidyr")==FALSE){
   install.packages("tidyr")
-  library(tidyr)
+  
 }
 
 gettable<-function(getcolumn="Length", scale , columns ,
                    output = "" # if specified, saves the table in "<output>.csv"
                    ) {
+  library(tidyr)
   setoffiles<-list.files(pattern = "*.csv")
   # trim accidental spaces from output string
   output <- trimws(output, which = "both")
@@ -40,8 +41,8 @@ gettable<-function(getcolumn="Length", scale , columns ,
     }
     line2<-c(line2,length(mtx[,2])+1)
     for (j in 1:(length(line1)-1)){
-      if ((line1[j+1]-line1[j]-sum(line2<line1[j+1]&line2>line1[j]))!=length(columns)-1){
-        warning("Unfitted data for gettable() function : ",setoffiles[i]," doesn't have ", length(columns)-1, " values between rows ", line1[j], " and ",line1[j+1],".")
+      if ((line1[j+1]-line1[j]-sum(line2<line1[j+1]&line2>line1[j]))!=length(columns)){
+        warning("Unfitted data for gettable() function : ",setoffiles[i]," doesn't have ", length(columns), " values between rows ", line1[j], " and ",line1[j+1],".")
         willstop<-1
       }
     }
@@ -59,6 +60,7 @@ gettable<-function(getcolumn="Length", scale , columns ,
     ## Manages the date format to make it understandable to R
     dateformat<-data.frame(rawdate=workfile$Date.Modif)
     daterow<-as.character(dateformat$rawdate)
+    daterow[is.na(daterow)]<-0
     concat<-subset(dateformat,dateformat[,1]!=0)
     concat<-separate(concat, rawdate, c("week","b","d","time","CEST","Y"),sep=" " )
     concat<-data.frame(paste(concat$b,concat$d,concat$Y))
@@ -80,8 +82,8 @@ gettable<-function(getcolumn="Length", scale , columns ,
       }
     }
   }
-  lastcol<-length(columns)+2
-  allcolumns<-c("file","date",columns)
+  lastcol<-length(columns)+3
+  allcolumns<-c("file","date","name",columns)
   allcolumns<-factor(allcolumns,levels = unique (allcolumns)) ## turns characters into levelled factors to keep them in the right order when using split()
   pre_df<-split(tablebase,allcolumns) ##splits the data into different columns
   for (k in 4:lastcol){
