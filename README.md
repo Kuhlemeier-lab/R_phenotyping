@@ -62,9 +62,15 @@ In order to can use it, please set Fiji the following way:
 ### gettable function
 ```
 gettable(getcolumn="Length", scale, columns, output = "" )
+
 ```
 
-It will allow you to have raw [Fiji data](DataStock/RawFijiTemplate.csv) turned into [clean tables](DataStock/ProcessedPhenoData.csv).
+Calling:
+```
+col<-c("pistil","anth1","anth2","anth3","anth4","anth5","D1","D2")
+gettable(scale=4, columns=col)
+```
+allows you to have raw [Fiji data](DataStock/RawFijiTemplate.csv) turned into [clean tables](DataStock/ProcessedPhenoData.csv).
 The conditions for this script to work properly are:
 - You always have the same amount of measurements (same amount of columns)
 - You are interested in the values of only one column of the Fiji results 
@@ -73,7 +79,7 @@ The conditions for this script to work properly are:
 Arguments :
 - getcolumn = name of the column that has the measurements you want to extract.
 - scale = unit of the scale you measured. There is no default value so you must specify it every time you run the function. If FALSE, it won't make a scale and keep your raw measurements.
-- columns = an object containing the name of each of your column. 
+- columns = an object containing the name of each of your different measurement. 
 - output = default value "" prints the table to STDOUT. If a string is provided, the table is saved in a `<string`>.csv file in the working directory.
 
 ## Allgraphs.R
